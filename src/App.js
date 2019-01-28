@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -11,11 +11,11 @@ class App extends Component {
       { id: 3, name: 'Max3', age: 18 },
     ],
     showPersons: false
-  }
+  };
 
   togglePersonsHandler = () => {
     this.setState({showPersons: !this.state.showPersons})
-  }
+  };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -32,7 +32,7 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState({persons: persons})
-  }
+  };
 
   deletePersonHandler = (personIndex) => {
     // copies the array, more safe way to set state without mutate the state
@@ -40,18 +40,11 @@ class App extends Component {
     const persons = [...this.state.persons]
     persons.splice(personIndex, 1);
     this.setState({persons: persons})
-  }
+  };
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -66,14 +59,16 @@ class App extends Component {
             />
           })}
         </div>
-      )
+      );
+
+      btnClass = classes.Red;
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a react app</h1>
         <button
-          style={style}
+          className={btnClass}
           onClick={this.togglePersonsHandler}>Switch Name</button>
         { persons }
       </div>
