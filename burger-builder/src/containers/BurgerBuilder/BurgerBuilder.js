@@ -11,10 +11,10 @@ class BurgerBuilder extends Component {
     // more modern than use the constructor (sugar syntax)
     state = {
         ingredients: {
-            salad: 1,
-            bacon: 1,
-            cheese: 2,
-            meat: 2
+            salad: 0,
+            bacon: 0,
+            cheese: 0,
+            meat: 0
         }
     }
 
