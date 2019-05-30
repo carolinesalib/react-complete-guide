@@ -6,20 +6,10 @@ import { connect } from 'react-redux';
 import * as actionTypes from "../reducers/actions";
 
 class Persons extends Component {
-    personAddedHandler = () => {
-        const newPerson = {
-            id: Math.random(), // not really unique but good enough here!
-            name: 'Max',
-            age: Math.floor( Math.random() * 40 )
-        };
-
-        this.props.onAddPerson(newPerson);
-    };
-
     render () {
         return (
             <div>
-                <AddPerson personAdded={this.personAddedHandler} />
+                <AddPerson personAdded={this.props.onAddPerson} />
                 {this.props.persons.map(person => (
                     <Person 
                         key={person.id}
@@ -33,7 +23,6 @@ class Persons extends Component {
 }
 
 
-
 const mapStateToProps = state => {
     return {
         persons: state.persons.persons,
@@ -42,7 +31,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPerson: (person) => dispatch({type: actionTypes.ADD_PERSON, person: person}),
+        onAddPerson: (name, age) => dispatch({type: actionTypes.ADD_PERSON, person: {name: name, age: age}}),
         onDeletePerson: (person_id) => dispatch({type: actionTypes.DELETE_PERSON, person_id: person_id}),
     };
 };
