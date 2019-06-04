@@ -1,0 +1,2 @@
+HOC: Higher Order Component
+https://reactjs.org/docs/higher-order-components.html
