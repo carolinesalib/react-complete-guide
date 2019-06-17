@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Post.css';
+// import {withRouter} from "react-router";
 
 const post = (props) => (
     <article className="Post" onClick={props.clicked}>
@@ -12,3 +13,6 @@ const post = (props) => (
 );
 
 export default post;
+
+// import hoc router props into this component
+// export default withRouter(post);
