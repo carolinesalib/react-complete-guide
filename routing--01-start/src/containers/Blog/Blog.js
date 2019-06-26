@@ -3,7 +3,6 @@ import './Blog.css';
 import {NavLink, Route, Switch} from 'react-router-dom';
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
-import FullPost from "./FullPost/FullPost";
 
 class Blog extends Component {
     render () {
@@ -13,7 +12,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink
-                                to="/"
+                                to="/posts"
                                 exact
                                 // can use this to subscribe the active class
                                 activeClassName="active"
@@ -31,14 +30,14 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch>
-                    <Route path="/" exact component={Posts} />
                     <Route path="/new-post" component={NewPost} />
+                    <Route path="/posts" component={Posts} />
                     {/*
                         this has to be the last because the order is important,
                         especially with the switch, otherwise our new-post could
                         be consider an id
                     */}
-                    <Route path="/:id" exact component={FullPost} />
+                    {/*<Route path="/posts/:id" exact component={FullPost} />*/}
                 </Switch>
             </div>
         );
