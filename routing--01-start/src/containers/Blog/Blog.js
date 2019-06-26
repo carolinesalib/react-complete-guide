@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Blog.css';
-import {NavLink, Route, Switch} from 'react-router-dom';
+import { NavLink, Route, Switch, Redirect } from 'react-router-dom';
 import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
@@ -32,6 +32,7 @@ class Blog extends Component {
                 <Switch>
                     <Route path="/new-post" component={NewPost} />
                     <Route path="/posts" component={Posts} />
+                    <Redirect from="/" to="/posts" />
                     {/*
                         this has to be the last because the order is important,
                         especially with the switch, otherwise our new-post could
