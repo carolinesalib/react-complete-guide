@@ -85,7 +85,7 @@ class ContactData extends Component {
                         {value: 'drone', displayValue: 'Drone'},
                     ]
                 },
-                value: '',
+                value: 'fastest',
                 validation: {},
                 valid: true,
             },
