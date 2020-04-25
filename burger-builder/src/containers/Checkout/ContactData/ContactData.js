@@ -4,6 +4,7 @@ import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from '../../../components/UI/Input/Input'
+import form from "eslint-plugin-jsx-a11y/lib/util/implicitRoles/form";
 
 class ContactData extends Component {
     state = {
@@ -84,9 +85,11 @@ class ContactData extends Component {
                         {value: 'drone', displayValue: 'Drone'},
                     ]
                 },
-                value: ''
+                value: '',
+                valid: true,
             },
         },
+        formIsValid: false,
         loading: false,
     };
 
@@ -148,12 +151,15 @@ class ContactData extends Component {
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
-
-        console.log("updatedFormElement.valid", updatedFormElement.valid);
-
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-        this.setState({orderForm: updatedOrderForm})
+        let formIsValid = true;
+
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid})
     }
 
     render() {
@@ -180,7 +186,7 @@ class ContactData extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
-                <Button btnType="Success">ORDER</Button>
+                <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
         );
 
