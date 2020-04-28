@@ -18,7 +18,6 @@ class BurgerBuilder extends Component {
 
     // more modern than use the constructor (sugar syntax)
     state = {
-        totalPrice: 4,
         purchasable: false,
         purchasing: false,
         loading: false,
@@ -33,6 +32,18 @@ class BurgerBuilder extends Component {
         //     .catch(() => {
         //         this.setState({ error: true });
         //     });
+    }
+
+    isPurchasable(ingredients) {
+        const sum = Object.keys(ingredients)
+            .map(igKey => {
+                return ingredients[igKey]
+            })
+            .reduce((sum, el) => {
+                return sum + el;
+            }, 0);
+
+        return sum > 0;
     }
 
     purchaseHandler = () => {
@@ -80,7 +91,7 @@ class BurgerBuilder extends Component {
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        purchasable={this.state.purchasable}
+                        purchasable={this.isPurchasable(this.props.ingredients)}
                         ordered={this.purchaseHandler}
                         price={this.props.totalPrice}
                     />
