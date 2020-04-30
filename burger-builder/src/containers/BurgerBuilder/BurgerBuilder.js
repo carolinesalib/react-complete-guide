@@ -10,7 +10,7 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actionTypes from '../../store/actions';
 import {connect} from "react-redux";
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
     // constructor(props) {
     //     super(props);
     //     this.state = {...}
@@ -25,6 +25,7 @@ class BurgerBuilder extends Component {
     };
 
     componentDidMount() {
+        // TODO: look for tests when changing here
         // axios.get('https://react-by-burger-ab41a.firebaseio.com/ingredients.json')
         //     .then(response => {
         //         this.setState({ ingredients: response.data });
