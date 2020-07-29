@@ -18,12 +18,10 @@ export class BurgerBuilder extends Component {
 
     // more modern than use the constructor (sugar syntax)
     state = {
-        purchasable: false, // TODO: still using this?
         purchasing: false,
     };
 
     componentDidMount() {
-        // TODO: look for tests when changing here
         this.props.onInitIngredients();
     }
 
