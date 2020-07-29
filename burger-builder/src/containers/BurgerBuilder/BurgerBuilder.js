@@ -18,21 +18,12 @@ export class BurgerBuilder extends Component {
 
     // more modern than use the constructor (sugar syntax)
     state = {
-        purchasable: false,
+        purchasable: false, // TODO: still using this?
         purchasing: false,
-        loading: false,
-        error: false,
     };
 
     componentDidMount() {
         // TODO: look for tests when changing here
-        // axios.get('https://react-by-burger-ab41a.firebaseio.com/ingredients.json')
-        //     .then(response => {
-        //         this.setState({ ingredients: response.data });
-        //     })
-        //     .catch(() => {
-        //         this.setState({ error: true });
-        //     });
     }
 
     isPurchasable(ingredients) {
@@ -92,10 +83,6 @@ export class BurgerBuilder extends Component {
                 purchaseCanceled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}
             />;
-        }
-
-        if (this.state.loading) {
-            orderSummary = <Spinner />;
         }
 
         return (
