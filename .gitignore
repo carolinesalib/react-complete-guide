@@ -18,6 +18,8 @@
 .env.test.local
 .env.production.local
 
+learning-react-internals/node_modules/*
+
 # ide
 /.idea
 /.vscode
