@@ -4,6 +4,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import classes from './App.css';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Aux';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   // state only works in Components
@@ -13,7 +14,8 @@ class App extends Component {
       { id: 2, name: 'Max2', age: 8 },
       { id: 3, name: 'Max3', age: 18 },
     ],
-    showPersons: false
+    showPersons: false,
+    authenticated: false,
   };
 
   togglePersonsHandler = () => {
@@ -45,6 +47,10 @@ class App extends Component {
     this.setState({persons: persons})
   };
 
+  loginHandler = () => {
+    this.setState({authenticated: true})
+  };
+
   render() {
     let persons = null;
 
@@ -62,12 +68,14 @@ class App extends Component {
 
     return (
       <Aux>
-        <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonsHandler}
-        />
-        { persons }
+        <AuthContext.Provider value={{authenticated: this.state.authenticated, login: this.loginHandler}}>
+          <Cockpit
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonsHandler}
+          />
+          { persons }
+        </AuthContext.Provider>
       </Aux>
     );
   }

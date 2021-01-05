@@ -2,6 +2,7 @@
 import React, {useRef, useEffect} from 'react';
 import classes from './Person.css';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 // const because we don't intent to change this variable
 const person = (props) => {
@@ -13,14 +14,17 @@ const person = (props) => {
 
   return (
     <div className={classes.Person}>
-      <p onClick={props.click}>I'm {props.name} and I'm {props.age} years old!</p>
-      <p>{props.children}</p>
-      <input
-        type="text"
-        ref={inputElementRef}
-        onChange={props.changed}
-        value={props.name}
-      />
+      <AuthContext.Consumer>
+        {context => context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>}
+      </AuthContext.Consumer>
+        <p onClick={props.click}>I'm {props.name} and I'm {props.age} years old!</p>
+        <p>{props.children}</p>
+        <input
+          type="text"
+          ref={inputElementRef}
+          onChange={props.changed}
+          value={props.name}
+        />
     </div>);
 }
 
