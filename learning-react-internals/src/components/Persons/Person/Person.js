@@ -12,6 +12,10 @@ const person = (props) => {
     inputElementRef.current.focus();
   }, []);
 
+  // If this was a class based component, we can use context in a more elegant way:
+  // static contextType = AuthContext;
+  // this.context.authenticated // Can be used everywhere in the class
+
   return (
     <div className={classes.Person}>
       <AuthContext.Consumer>
