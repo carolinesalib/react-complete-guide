@@ -36,7 +36,9 @@ class Blog extends Component {
                 <Switch>
                     {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null }
                     <Route path="/posts" component={Posts} />
-                    <Redirect from="/" to="/posts" />
+                    {/* Should always come last */}
+                    <Route render={() => <h1>Not found</h1>} />
+                    {/* <Redirect from="/" to="/posts" /> */}
                     {/*
                         this has to be the last because the order is important,
                         especially with the switch, otherwise our new-post could
