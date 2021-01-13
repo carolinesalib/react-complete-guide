@@ -4,8 +4,9 @@ import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from '../../../components/UI/Input/Input'
-import form from "eslint-plugin-jsx-a11y/lib/util/implicitRoles/form";
 import {connect} from "react-redux";
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import * as actions from '../../../store/actions/index';
 
 class ContactData extends Component {
     state = {
@@ -97,8 +98,6 @@ class ContactData extends Component {
 
     orderHandler = (event) => {
         event.preventDefault();
-
-        this.setState({loading: true});
 
         const formData = {};
 
@@ -211,4 +210,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = dispatch => {
+    onOrderBurger: (orderData) => dispatch(actions.purchaseBurgerStart())
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
